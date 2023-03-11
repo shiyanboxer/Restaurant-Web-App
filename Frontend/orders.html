@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Orders</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <h1>Orders</h1>
+    <form id="form" method="post" action="http://127.0.0.1:4000">
+      <label for="date">Enter a date to view orders:</label>
+      <input type="date" id="date" name="date">
+      <button type="submit">View Orders</button>
+    </form>
+    <h2>List all the orders made on a particular date</h2>
+    <p>Enter a date and view a list of the first and last name of the customer, the items ordered, the total amount of the order, the tip, and the name of the delivery person who delivered the order.</p>
+    <table id="orders">
+      <thead>
+        <tr>
+          <th>Customer</th>
+          <th>Items Ordered</th>
+          <th>Total Amount</th>
+          <th>Tip</th>
+          <th>Delivery Person</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <script>
+        const form = document.getElementById('form');
+        const tableBody = document.querySelector('#orders tbody');
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const date = document.getElementById('date').value;
+          const response = await fetch(`/backend/orders.php?date=${date}`);
+          const data = await response.json();
+
+          console.log('data'); 
+          console.log(data); 
+
+          tableBody.innerHTML = '';
+
+          // loop through the orders and create a row for each one
+          data.forEach(order => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${order.customer}</td>
+              <td>${order.items}</td>
+              <td>${order.total}</td>
+              <td>${order.tip}</td>
+              <td>${order.deliveryPerson}</td>
+            `;
+            tableBody.appendChild(row);
+          });
+        });
+    </script>
+  </body>
+</html>
