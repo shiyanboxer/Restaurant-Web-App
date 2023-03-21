@@ -3,7 +3,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #FFE27A;
+    /* background-color: #FFE27A; */
+    background-color: white;
     text-align: center;
   }
 
@@ -61,10 +62,10 @@ body {
     max-width: 100%;
     height: auto;
   }
+
   table {
     margin: 0 auto;
   }
-  
   
   h1 {
     font-size: 36px;
