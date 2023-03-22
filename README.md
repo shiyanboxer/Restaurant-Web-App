@@ -3,8 +3,21 @@
 ### Quick Start
 1. Create a MySQL database with the restauarnt.ddl script in XAMMP
 2. Run the backend locally
+
+```
+cd backend
+php -S 127.0.0.1:4000 new-customer.php
+php -S 127.0.0.1:4001 employee-schedule.php
+php -S 127.0.0.1:4003 order-dates.php
+php -S 127.0.0.1:4004 orders.php
+```
+
 3. Run the frontend locally
-4. Access the web application through your localhost
+```
+cd frontend
+python3 -m http.server
+```
+4. Access the web application through http://localhost:8000/restaurant.html
 
 ### Instructions
 Restaurant Database Functional Requirements
