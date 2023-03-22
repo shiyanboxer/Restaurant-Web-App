@@ -1,3 +1,6 @@
+<!-- cd backend -->
+<!-- php -S 127.0.0.1:4000 order-dates.php -->
+
 <?php
 include 'connectdb.php';
 

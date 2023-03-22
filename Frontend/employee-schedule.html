@@ -1,3 +1,7 @@
+<!-- Allow the user to choose an employee and show their schedule
+for Monday to Friday.  Do not show the schedule for Saturday or Sunday, 
+even if the employee works on those days. -->
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,43 +10,19 @@
   </head>
   <body>
     <h1>Employee Schedule</h1>
-    <form>
-      <label for="employee-select">Select an Employee:</label>
-      <select id="employee-select">
-        <option value="employee1">Employee 1</option>
-        <option value="employee2">Employee 2</option>
-        <option value="employee3">Employee 3</option>
+    <form action="http://127.0.0.1:4000/" method="post">
+      <label for="employee-id">Choose an employee:</label>
+      <select id="employee-id" name="employee-id">
+        <option value="1">Bob Smith</option>
+        <option value="2">Amanda Smith</option>
+        <option value="3">Rachel Jones</option>
+        <option value="4">Grace Wallace</option>
+        <option value="5">Jacky Gold</option>
+        <option value="6">Grace Adams</option>
+        <option value="7">Manny Jones</option>
       </select>
+      <br><br>
+      <button type="submit">Get Schedule</button>
     </form>
-    <table>
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th>Shift</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Monday</td>
-          <td>8:00am - 12:00pm</td>
-        </tr>
-        <tr>
-          <td>Tuesday</td>
-          <td>12:00pm - 4:00pm</td>
-        </tr>
-        <tr>
-          <td>Wednesday</td>
-          <td>4:00pm - 8:00pm</td>
-        </tr>
-        <tr>
-          <td>Thursday</td>
-          <td>8:00am - 12:00pm</td>
-        </tr>
-        <tr>
-          <td>Friday</td>
-          <td>12:00pm - 4:00pm</td>
-        </tr>
-      </tbody>
-    </table>
   </body>
 </html>
