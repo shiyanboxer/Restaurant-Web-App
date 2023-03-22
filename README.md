@@ -1,5 +1,18 @@
 ## Web Application and Demo (Project Part 3)
 
+### Demo Video
+- https://youtu.be/EOf5AZM1V8Q
+
+### GitHub Repo
+- https://github.com/shiyanboxer/Restaurant-Web-App
+
+### Features + 1 Bonus Feature
+- Employee schedule
+- New customer
+- Order dates
+- Orders
+- View employee
+
 ### Quick Start
 1. Create a MySQL database with the restauarnt.ddl script in XAMMP
 2. Run the backend locally
@@ -8,6 +21,7 @@
 cd backend
 php -S 127.0.0.1:4000 new-customer.php
 php -S 127.0.0.1:4001 employee-schedule.php
+php -S 127.0.0.1:4002 view-employee.php
 php -S 127.0.0.1:4003 order-dates.php
 php -S 127.0.0.1:4004 orders.php
 ```
