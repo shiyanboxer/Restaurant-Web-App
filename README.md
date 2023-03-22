@@ -1,5 +1,11 @@
 ## Web Application and Demo (Project Part 3)
 
+### Quick Start
+1. Create a MySQL database with the restauarnt.ddl script in XAMMP
+2. Run the backend locally
+3. Run the frontend locally
+4. Access the web application through your localhost
+
 ### Instructions
 Restaurant Database Functional Requirements
 

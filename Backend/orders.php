@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Prepare the SQL query to get all orders made on the given date
   $query = $connection->prepare("
-    SELECT c.FullName AS CustomerFirstName, c.Email AS CustomerLastName, 
+    SELECT ro.OrderID, c.FullName AS CustomerFirstName, c.Email AS CustomerLastName, 
     mi.MenuItemName, mi.Price, omi.Quantity, 
     ro.OrderAmount, ro.Tip, e.EmployeeName AS DeliveryPerson
     FROM Restaurant_Order ro
@@ -48,13 +48,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<thead>";
     echo "<tr>";
     echo "<th style='padding: 20px;'>Customer Full Name</th>";
-    echo "<th style='padding: 20px;'>Items Ordered</th>";
     echo "<th style='padding: 20px;'>Order Total</th>";
     echo "<th style='padding: 20px;'>Tip</th>";
     echo "<th style='padding: 20px;'>Delivery Person</th>";
+    echo "<th style='padding: 20px;'>Items Ordered</th>";  
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
+
+    // Loop through each order and print out its details
+    // while ($row = $query->fetch()) {
+    //   echo '<pre>';
+    //   print_r($row);
+    //   echo '</pre>';
+
+    //   echo "<tr>";
+    //   echo "<td>{$row['CustomerFirstName']}</td>";
+    //   echo "<td>{$row['MenuItemName']}</td>";
+    //   echo "<td>{$row['OrderAmount']}</td>";
+    //   echo "<td>{$row['Tip']}</td>";
+    //   echo "<td>{$row['DeliveryPerson']}</td>";
+    //   echo "</tr>";
+    // }
+
+    // Initialize variables to keep track of current and previous order IDs
+    $currentOrderID = '';
+    $previousOrderID = '';
 
     // Loop through each order and print out its details
     while ($row = $query->fetch()) {
@@ -62,15 +81,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // print_r($row);
       // echo '</pre>';
 
-      echo "<tr>";
-      echo "<td>{$row['CustomerFirstName']}</td>";
-      echo "<td>{$row['MenuItemName']}</td>";
-      echo "<td>{$row['OrderAmount']}</td>";
-      echo "<td>{$row['Tip']}</td>";
-      echo "<td>{$row['DeliveryPerson']}</td>";
-      echo "</tr>";
+      $currentOrderID = $row['OrderID'];
+
+      // If the current order ID is different from the previous order ID,
+      // print out a new row with the order details
+      if ($currentOrderID !== $previousOrderID) {
+        // If this isn't the first row, close the previous row first
+        if ($previousOrderID !== '') {
+          echo "</td></tr>";
+        }
+
+        // Print out the details for the current row
+        echo "<tr>";
+        echo "<td>{$row['CustomerFirstName']}</td>";
+        echo "<td>{$row['OrderAmount']}</td>";
+        echo "<td>{$row['Tip']}</td>";
+        echo "<td>{$row['DeliveryPerson']}</td>";
+        echo "<td>{$row['MenuItemName']}";
+        
+        // Update the previous order ID to the current one
+        $previousOrderID = $currentOrderID;
+      } else {
+        // If the current order ID is the same as the previous order ID,
+        // append the current menu item to the previous row's item list
+        echo ", {$row['MenuItemName']}";
+      }
     }
 
+    // Close the last row
+    echo "</td></tr>";
+    
     // Print out the table footer
     echo "</tbody></table>";
     echo "</body>";
