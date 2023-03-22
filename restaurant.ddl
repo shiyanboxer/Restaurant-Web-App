@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS restaurantDB;
-CREATE DATABASE restaurantDB;
-USE restaurantDB;
+DROP DATABASE IF EXISTS restaurantDB1;
+CREATE DATABASE restaurantDB1;
+USE restaurantDB1;
 
 CREATE TABLE Employee (
 EmployeeID INT AUTO_INCREMENT NOT NULL,
@@ -42,6 +42,14 @@ Price DECIMAL(5,2),
 PRIMARY KEY(MenuItemID)
 );
 
+CREATE TABLE Customer (
+Email VARCHAR(50) NOT NULL,
+FullName VARCHAR(50) NOT NULL,
+PhoneNumber INTEGER,
+DeliveryAddress VARCHAR(50) NOT NULL,
+PRIMARY KEY(Email)
+);
+
 CREATE TABLE Restaurant_Order (
 OrderID INT AUTO_INCREMENT NOT NULL,
 EmployeeID INT NOT NULL,
@@ -50,7 +58,7 @@ Tip DECIMAL(5,2),
 OrderTime DATETIME,
 OrderDate DATE,
 DeliveryTime DATETIME,
-CustomerEmail VARCHAR(50) NOT NULL;
+CustomerEmail VARCHAR(50) NOT NULL,
 PRIMARY KEY(OrderID),
 FOREIGN KEY(EmployeeID) REFERENCES Employee(EmployeeID) ON DELETE CASCADE,
 FOREIGN KEY(CustomerEmail) REFERENCES Customer(Email) ON DELETE CASCADE
@@ -66,13 +74,6 @@ FOREIGN KEY(OrderID) REFERENCES Restaurant_Order(OrderID) ON DELETE CASCADE,
 FOREIGN KEY(MenuItemID) REFERENCES Menu_Item(MenuItemID) ON DELETE CASCADE
 );
 
-CREATE TABLE Customer (
-Email VARCHAR(50) NOT NULL,
-FullName VARCHAR(50) NOT NULL,
-PhoneNumber INTEGER,
-DeliveryAddress VARCHAR(50) NOT NULL,
-PRIMARY KEY(Email)
-);
 
 CREATE TABLE Payment (
 PaymentID INT AUTO_INCREMENT NOT NULL,
@@ -145,13 +146,22 @@ insert into Menu_Item values
 (13, 'Pizza', 23.00)
 ;
 
+insert into Customer values
+('shiyanboxer@gmail.com', 'Shiyan Boxer', 6722348698, '392 University Ave, Kingston, ON'),
+('george@gmail.com', 'George Jones', 2348934233, '999 Princess Street, Kingston, ON'),
+('a89@hotmail.com', 'Alex Smith', 999723489, '1 Albert Street, Kingston, ON'),
+('sally23@gmail.com', 'Sally Boxer', 6422323698, '391 University Ave, Kingston, ON'),
+('joeboxer@gmail.com', 'Joe Boxer', 642223698, '391 University Ave, Kingston, ON'),
+('masonsmith@gmail.com', 'Mason Smith', 123456723, '393 University Ave, Kingston, ON')
+;
+
 insert into Restaurant_Order values
-(1, 7, 23.10, 10.12, '2023-01-02 12:59:59', '2023-01-02', '2023-01-02 13:59:59'),
-(2, 3, 23.20, 10.11, '2023-01-01 12:59:59', '2023-01-01', '2023-01-01 13:59:59'),
-(3, 7, 23.30, 9.20, '2023-01-01 12:59:59', '2023-01-01', '2023-01-01 13:59:59'),
-(4, 3, 23.40, 10.12, '2023-01-05 12:59:59', '2023-01-05', '2023-01-05 13:59:59'),
-(5, 7, 23.50, 2.30, '2023-01-01 12:59:59', '2023-01-01', '2023-01-01 13:59:59'),
-(6, 3, 23.60, 12.20, '2023-01-10 12:59:59', '2023-01-10', '2023-01-10 13:59:59')
+(1, 7, 23.10, 10.12, '2023-01-02 12:59:59', '2023-01-02', '2023-01-02 13:59:59', 'shiyanboxer@gmail.com'),
+(2, 3, 23.20, 10.11, '2023-01-01 12:59:59', '2023-01-01', '2023-01-01 13:59:59', 'shiyanboxer@gmail.com'),
+(3, 7, 23.30, 9.20, '2023-01-01 12:59:59', '2023-01-01', '2023-01-01 13:59:59', 'a89@hotmail.com'),
+(4, 3, 23.40, 10.12, '2023-01-05 12:59:59', '2023-01-05', '2023-01-05 13:59:59', 'a89@hotmail.com'),
+(5, 7, 23.50, 2.30, '2023-01-01 12:59:59', '2023-01-01', '2023-01-01 13:59:59', 'sally23@gmail.com'),
+(6, 3, 23.60, 12.20, '2023-01-10 12:59:59', '2023-01-10', '2023-01-10 13:59:59', 'sally23@gmail.com')
 ;
 
 insert into Order_Menu_Item values
@@ -163,15 +173,6 @@ insert into Order_Menu_Item values
 (4, 2, 4),
 (5, 2, 4),
 (6, 2, 4)
-;
-
-insert into Customer values
-('shiyanboxer@gmail.com', 'Shiyan Boxer', 6722348698, '392 University Ave, Kingston, ON'),
-('george@gmail.com', 'George Jones', 2348934233, '999 Princess Street, Kingston, ON'),
-('a89@hotmail.com', 'Alex Smith', 999723489, '1 Albert Street, Kingston, ON'),
-('sally23@gmail.com', 'Sally Boxer', 6422323698, '391 University Ave, Kingston, ON'),
-('joeboxer@gmail.com', 'Joe Boxer', 642223698, '391 University Ave, Kingston, ON'),
-('masonsmith@gmail.com', 'Mason Smith', 123456723, '393 University Ave, Kingston, ON')
 ;
 
 insert into Payment values
