@@ -1,5 +1,5 @@
 <!-- cd backend -->
-<!-- php -S 127.0.0.1:4000 orders.php -->
+<!-- php -S 127.0.0.1:4004 orders.php -->
 
 <!-- List all the orders made on a particular date.  
 The user should be asked for a  date and you will 
@@ -117,6 +117,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "</html>";
   } else {
     // If no orders were found, print out an error message
+    echo "<html>";
+    echo "<head>";
+    echo "<title>Orders on $date</title>";
+    echo "<style type='text/css'>";
+    include 'style.css';
+    echo "</style>";
+    echo "</head>";
+    echo "<body>";
+    echo "<h1>Orders on $date</h1>";    
     echo "No orders found on $date.";
   }
 

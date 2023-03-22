@@ -23,7 +23,16 @@ $existingCustomerQuery->execute([$email]);
 $existingCustomer = $existingCustomerQuery->fetch();
 
 if ($existingCustomer) {
-    echo "Customer already exists in the database.";
+    echo "<html>";
+    echo "<head>";
+    echo "<title>ENew Customer</title>";
+    echo "<style type='text/css'>";
+    include 'style.css';
+    echo "</style>";
+    echo "</head>";
+    echo "<body>";
+    echo "<h1>New Customer</h1>";
+    echo "Customer already exists in the database. Try using a different email address.";
 } else {
     // insert new customer into database
     $newCustomerQuery = $connection->prepare("INSERT INTO Customer (Email, FullName, PhoneNumber, DeliveryAddress) VALUES (?, ?, ?, ?)");
@@ -32,7 +41,15 @@ if ($existingCustomer) {
     // add $5.00 credit to new customer's account
     $newCustomerPaymentQuery = $connection->prepare("INSERT INTO Payment (PaymentDate, PaymentAmount, Credit) VALUES (?, ?, ?)");
     $newCustomerPaymentQuery->execute([date("Y-m-d"), 0.00, 5.00]);
-
+    echo "<html>";
+    echo "<head>";
+    echo "<title>ENew Customer</title>";
+    echo "<style type='text/css'>";
+    include 'style.css';
+    echo "</style>";
+    echo "</head>";
+    echo "<body>";
+    echo "<h1>New Customer</h1>";
     echo "New customer added to the database.";
 }
 

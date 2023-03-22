@@ -88,5 +88,12 @@ body {
   ul {
     list-style: none;
   }
+
+  button {
+    height: 50px;
+    width: 150px;
+    font-size: 20px; /* Optionally adjust the font size to match the larger button size */
+  }
+  
   /* Specific styles for restaurant.html */
   
