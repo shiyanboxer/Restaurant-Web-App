@@ -23,6 +23,7 @@ EmployeeID INT NOT NULL,
 ScheduleDay DATE,
 StartTime TIME,
 EndTime TIME,
+Day INT,
 PRIMARY KEY(ScheduleID),
 FOREIGN KEY(EmployeeID) REFERENCES Employee(EmployeeID) ON DELETE CASCADE
 );
@@ -49,8 +50,10 @@ Tip DECIMAL(5,2),
 OrderTime DATETIME,
 OrderDate DATE,
 DeliveryTime DATETIME,
+CustomerEmail VARCHAR(50) NOT NULL;
 PRIMARY KEY(OrderID),
-FOREIGN KEY(EmployeeID) REFERENCES Employee(EmployeeID) ON DELETE CASCADE
+FOREIGN KEY(EmployeeID) REFERENCES Employee(EmployeeID) ON DELETE CASCADE,
+FOREIGN KEY(CustomerEmail) REFERENCES Customer(Email) ON DELETE CASCADE
 );
 
 
@@ -107,14 +110,14 @@ insert into Chef_Credential values
 ;
 
 insert into Schedule values
-(1, 1, '2023-01-01', '09:00:00', '12:00:00'),
-(2, 1, '2023-01-02', '12:00:00', '14:00:00'),
-(3, 2, '2023-01-02', '08:00:00', '15:00:00'),
-(4, 3, '2023-01-03', '10:00:00', '12:00:00'),
-(5, 4, '2023-01-04', '09:00:00', '19:00:00'),
-(6, 5, '2023-01-06', '10:00:00', '20:00:00'),
-(7, 5, '2023-01-07', '12:00:00', '13:00:00'),
-(8, 6, '2023-01-07', '11:00:00', '17:00:00')
+(1, 1, '2023-01-01', '09:00:00', '12:00:00', 7),
+(2, 1, '2023-01-02', '12:00:00', '14:00:00', 1),
+(3, 2, '2023-01-02', '08:00:00', '15:00:00', 1),
+(4, 3, '2023-01-03', '10:00:00', '12:00:00', 2),
+(5, 4, '2023-01-04', '09:00:00', '19:00:00', 3),
+(6, 5, '2023-01-06', '10:00:00', '20:00:00', 5),
+(7, 5, '2023-01-07', '12:00:00', '13:00:00', 6),
+(8, 6, '2023-01-07', '11:00:00', '17:00:00', 6)
 ;
 
 insert into Restaurant values
